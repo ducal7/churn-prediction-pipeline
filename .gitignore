@@ -1,0 +1,31 @@
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python caches / build
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+
+# Generated raw data and model artifacts (regenerated via `make data` / `make train`)
+data/
+models/
+
+# Generated machine-readable outputs (the PNG plots ARE committed, see below)
+reports/metrics.json
+reports/scores.csv
+
+# OS / editor cruft
+.DS_Store
+.idea/
+.vscode/
+
+# Keep the committed result plots
+!reports/
+!reports/*.png

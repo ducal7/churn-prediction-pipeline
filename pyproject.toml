@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "churn"
+version = "0.1.0"
+description = "Point-in-time churn prediction on synthetic gaming/fintech users."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Aditya Singh Rathore", email = "adityasinh0707@gmail.com" }]
+keywords = ["churn", "point-in-time", "lightgbm", "shap", "calibration"]
+
+# Versions pinned for reproducibility. Resolved and tested locally on CPython
+# 3.14; all carry wheels for the CI target (CPython 3.11). On 3.11 `shap` pulls
+# in `numba` automatically; on 3.14 (no numba wheel yet) a tiny local shim is
+# used -- see README "Reproducibility & environment notes".
+dependencies = [
+    "numpy==2.5.0",
+    "pandas==3.0.3",
+    "pyarrow==24.0.0",
+    "scipy==1.18.0",
+    "scikit-learn==1.9.0",
+    "joblib==1.5.3",
+    "lightgbm==4.6.0",
+    "matplotlib==3.11.0",
+    "shap==0.52.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+    "ruff==0.15.20",
+]
+
+[project.scripts]
+churn = "churn.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["churn"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
