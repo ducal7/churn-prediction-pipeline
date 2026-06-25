@@ -12,20 +12,20 @@ license = { text = "MIT" }
 authors = [{ name = "Aditya Singh Rathore", email = "adityasinh0707@gmail.com" }]
 keywords = ["churn", "point-in-time", "lightgbm", "shap", "calibration"]
 
-# Versions pinned for reproducibility. Resolved and tested locally on CPython
-# 3.14; all carry wheels for the CI target (CPython 3.11). On 3.11 `shap` pulls
-# in `numba` automatically; on 3.14 (no numba wheel yet) a tiny local shim is
-# used -- see README "Reproducibility & environment notes".
+# Versions pinned for reproducibility. Resolved and tested on the CI target
+# (CPython 3.11); all carry wheels for 3.11. numpy/scipy/shap are pinned to the
+# newest releases that still publish 3.11 wheels (numpy 2.5.0, scipy 1.18.0 and
+# shap 0.52.0 are 3.12+ only). On 3.11 `shap` pulls in `numba` automatically.
 dependencies = [
-    "numpy==2.5.0",
+    "numpy==2.4.6",
     "pandas==3.0.3",
     "pyarrow==24.0.0",
-    "scipy==1.18.0",
+    "scipy==1.17.1",
     "scikit-learn==1.9.0",
     "joblib==1.5.3",
     "lightgbm==4.6.0",
     "matplotlib==3.11.0",
-    "shap==0.52.0",
+    "shap==0.51.0",
 ]
 
 [project.optional-dependencies]
